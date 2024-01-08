@@ -168,7 +168,8 @@ void PmergeMe::fordJohnsonSort(std::deque<int> & deq)
     
     for (size_t i = 0; i < pairCount; ++i) 
     {
-        if (pairs[i].first > pairs[i].second) {
+        if (pairs[i].first > pairs[i].second) 
+        {
             std::swap(pairs[i].first, pairs[i].second);
         }
     }

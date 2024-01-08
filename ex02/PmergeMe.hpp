@@ -37,7 +37,6 @@ class PmergeMe
 
 		bool duplicatesNumbers(const std::vector<int> & vec) const;
 
-    protected:
 
     public:
 	
@@ -45,6 +44,7 @@ class PmergeMe
         PmergeMe(const PmergeMe&);
         PmergeMe& operator= (const PmergeMe&);
         ~PmergeMe();
+		
 		int	execution(int argc, char *argv[]);
 
 };

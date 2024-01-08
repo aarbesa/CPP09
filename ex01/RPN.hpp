@@ -2,15 +2,9 @@
 # define RPN_HPP
 
 # include <iostream>
-#include <string>
-#include <stack>
-#include <sstream>
-#include <stdexcept>
-#include <cstdlib> 
-# include <algorithm>
+# include <stack>
+# include <cstdlib>
 # include <limits>
-#include <cmath>
-#include <cerrno>
 
 # ifndef CLASS
 #  define CLASS(x, y) std::cout << "Called " << x << " of class " << y << std::endl

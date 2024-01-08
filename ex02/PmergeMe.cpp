@@ -73,10 +73,8 @@ std::vector<int> PmergeMe::sortRight(const std::vector<std::pair<int, int> > & p
     std::vector<int> rightNumbers;
     std::vector<std::pair<int, int> > sortedPairs = pairs;
 
-    // Tri des paires par le nombre de droite en utilisant pairComparator
     std::sort(sortedPairs.begin(), sortedPairs.end(), &PmergeMe::pairComparator);
 
-    // J'extraie les nb de droites
     for (size_t i = 0; i < sortedPairs.size(); ++i) 
     {
         rightNumbers.push_back(sortedPairs[i].second);
@@ -109,28 +107,24 @@ bool PmergeMe::pairComparator(const std::pair<int, int> & a, const std::pair<int
 
 void PmergeMe::fordJohnsonSort(std::vector<int> & vec)
 {
-    // Vérifier si la taille du vecteur est paire ou impaire
     bool oddSequence = (vec.size() % 2 != 0);
 
 
     std::vector<std::pair<int, int> > pairs;
-    size_t pairCount = vec.size() / 2; // Nombre de paires
+    size_t pairCount = vec.size() / 2;
 
-    // Sauvegarder le dernier élément dans une var dans le cas ou la sequence est impaire
     int lastElement = 0;
     if (oddSequence) 
     {
         lastElement = vec.back();
-        vec.pop_back(); // Retirer le dernier élément pour traiter les paires de 2
+        vec.pop_back();
     }
 
-    // Créer des paires
     for (size_t i = 0; i < pairCount * 2 - 1; i += 2) 
     {
         pairs.push_back(std::make_pair(vec[i], vec[i + 1]));
     }
 
-    // Trier les paires à l'intérieur
     for (size_t i = 0; i < pairCount; ++i) 
     {
         if (pairs[i].first > pairs[i].second) {
@@ -138,17 +132,13 @@ void PmergeMe::fordJohnsonSort(std::vector<int> & vec)
         }
     }
 
-    // Trie les paires par ordre croissant avec leur nombre de droite 
-    // Mets les nombres dans un vecteur
     std::vector<int> sortedRight = sortRight(pairs);
 
-    // Ajouter le dernier élément si la taille était impaire
     if (oddSequence) 
     {
         vec.push_back(lastElement);
     }
 
-    // Trier toute la séquence
     insertionSort(vec);
 }
 
@@ -201,7 +191,6 @@ double PmergeMe::getTime()
     return static_cast<double>(std::clock()) / CLOCKS_PER_SEC * 1e6;
 }
 
-
 bool PmergeMe::duplicatesNumbers(const std::vector<int> & vec) const
 {
     for (size_t i = 0; i < vec.size(); ++i) 
@@ -217,7 +206,6 @@ bool PmergeMe::duplicatesNumbers(const std::vector<int> & vec) const
     return (false);
     
 }
-
 
 void    PmergeMe::isSorted(std::deque<int> & deq) const
 {
@@ -239,8 +227,6 @@ void    PmergeMe::isSorted(std::deque<int> & deq) const
 
 int PmergeMe::execution(int argc, char *argv[])
 {
-    
-    // const int minInt = std::numeric_limits<int>::min();
     const int maxInt = std::numeric_limits<int>::max();
 
     std::vector<int> numbers;
@@ -250,7 +236,7 @@ int PmergeMe::execution(int argc, char *argv[])
         char *endptr;
         long num = std::strtol(argv[i], &endptr, 10);
 
-        if (*endptr != '\0' || num > maxInt || num < 0) 
+        if (*endptr != '\0' || num > maxInt || num < 0)
         {
             std::cerr << "Erreur : the value '" << argv[i] << "' is not a valid number" << std::endl;
             return (1);
@@ -288,7 +274,6 @@ int PmergeMe::execution(int argc, char *argv[])
     long long startTimeVector = this->getTime();
     this->fordJohnsonSort(vectorNumbers);
     long long endTimeVector = this->getTime();
-    // dequeNumbers.clear();
 
     std::cout << "After : ";
     for (std::vector<int>::iterator it = vectorNumbers.begin(); it != vectorNumbers.end(); ++it) 
